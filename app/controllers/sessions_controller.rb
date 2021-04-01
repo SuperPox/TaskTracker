@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     end
     if user.save
       session[:user_id] = user.id
-      redirect_to user_items_path(user)
+      redirect_to user_projects_path(user)
     else
       redirect_to signup_path
     end

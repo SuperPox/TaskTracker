@@ -1,8 +1,6 @@
 class ProjectsController < ApplicationController
   before_action(:set_project, except: [:index, :new, :create])
 
-  layout "application"
-
   def index
     if params[:user_id]
       user = User.find_by(id: params[:user_id])
@@ -13,7 +11,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -22,22 +19,19 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = project.new(project_params)
+    @project = Project.new(project_params)
     if @project.save
         redirect_to project_path(@project)
     else
-      # redirect_to new_project_path
-      @errors = @project.errors.full_messages
-      render :new
+        @errors = @project.errors.full_messages
+        render :new
     end
   end
 
   def edit
-
   end
 
   def update
-
     if @project.update(project_params)
       redirect_to(project_path(@project))
     else
@@ -60,7 +54,7 @@ class ProjectsController < ApplicationController
     end
 
     def set_project
-      @project = project.find_by(id: params[:id])
+      @project = Project.find_by(id: params[:id])
     end
 
 
