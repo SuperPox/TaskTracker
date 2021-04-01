@@ -1,0 +1,16 @@
+<h2>Log In</h2>
+
+  <% @errors && @errors.each do |e| %>
+    <li><%=e%></li>
+  <%end%>
+
+<%= form_for :user do |f|%>
+  <%=f.label "Username" %>
+  <%=f.text_field :username%>
+  <%=f.label "Password"%>
+  <%=f.password_field :password %>
+  <%=f.submit "Log In"%>
+
+  <%=link_to "Sign Up With Facebook", '/auth/facebook'%>
+
+<%end%>
