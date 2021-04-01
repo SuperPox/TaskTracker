@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_011403) do
     t.string "description"
     t.integer "priority"
     t.integer "user_id"
+    t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
