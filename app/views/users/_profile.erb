@@ -1,3 +1,25 @@
 <h3> Role: <%= @user.expertise %> </h3>
-
 <%=link_to "Edit My Role", edit_user_path(@user)%>
+
+<br>
+<br>
+
+
+
+<h3> My Projects </h3>
+<% Project.all.each do |p| %>
+    <li><%= p.name %></li>
+<%end%>
+
+
+
+<br>
+<h3> Project's I'm Assigned To </h3>
+<% Project.all.each do |p| %>
+    <% p.tasks.all.each do |t| %>      
+        <% if (t.assigned == @user.id) %>
+            <li><%= p.name %> </li>
+        <%end%> 
+    <%end%>
+<%end%>
+

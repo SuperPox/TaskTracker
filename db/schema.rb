@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_011403) do
     t.string "task_description"
     t.integer "priority"
     t.integer "task_status"
-    t.string "assigned"
+    t.integer "assigned"
     t.integer "user_id"
     t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false

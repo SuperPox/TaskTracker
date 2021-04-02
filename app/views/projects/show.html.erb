@@ -2,12 +2,12 @@
 <h3> <%=@project.project_description%> </h3>
 <%=link_to "Edit Project", edit_project_path(@project)%><br><br>
 
-<% @project.tasks.each do |t| %>
-    <li><%= t.task_description %> // Priority: <%= t.priority %> </li>
-<%end%>
 
+<% @project.tasks.each do |t| %>
+    <li><%= t.task_description %> // Priority: <%= t.priority %> // Assigned To: <%= User.find_by(id: "#{t.assigned}").username %> </li>
+<%end%>
 
 <br>
 
-<%link_to "Add Task", new_project_task_path(@project) %><br><br>
+<%=link_to "Add Task", new_project_task_path(@project) %><br><br>
 <%=button_to("Delete", @project, method: :delete, data: { confirm: "Really?" }) %>

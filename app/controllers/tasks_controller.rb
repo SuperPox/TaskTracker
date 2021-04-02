@@ -9,7 +9,6 @@ class TasksController < ApplicationController
     end 
        
     def new
-        binding.pry
         if params[:project_id]
           @project = Project.find_by(id: params[:project_id])
           @task = @project.tasks.build
