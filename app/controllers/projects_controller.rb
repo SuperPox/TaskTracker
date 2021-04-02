@@ -20,8 +20,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.tasks.each {|m| m.user = current_user}
     if @project.save
-        redirect_to project_path(@project)
+        #redirect_to project_path(@project)
+        redirect_to new_project_task_path(@project)
     else
         @errors = @project.errors.full_messages
         render :new

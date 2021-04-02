@@ -1,0 +1,10 @@
+<h2> <%=@project.name%> Project </h2>
+<%binding.pry%>
+<h3> <%=@project.description%> </h3>
+
+
+<br>
+<br>
+<%=link_to "Edit Project", edit_project_path(@project)%><br><br>
+<%=link_to "Add Tasks", new_project_task_path(@project) %><br><br>
+<%=button_to("Delete", @project, method: :delete, data: { confirm: "Really?" }) %>

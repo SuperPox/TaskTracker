@@ -14,15 +14,19 @@ ActiveRecord::Schema.define(version: 2021_04_01_011403) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
+    t.string "project_creator"
+    t.string "project_description"
+    t.integer "project_status"
     t.time "created_date"
-    t.time "due_date"
+    t.string "due_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "description"
+    t.string "task_description"
     t.integer "priority"
+    t.integer "task_status"
     t.integer "user_id"
     t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false

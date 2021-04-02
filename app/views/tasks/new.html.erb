@@ -1,0 +1,25 @@
+<% @errors && @errors.each do |e| %>
+  <li><%=e%></li>
+<%end%>
+
+<%if @project%>
+    <h2><%=@project.name%></h2>
+<%end%>
+    <h3> Tasks: </h3>
+<%= form_for(@task, url: form_url_helper(@project)) do |f|%>
+    <%=f.label "Description"%>
+    <%=f.text_field(:description)%>
+    <%=f.label "Priority"%>
+    <%=f.number_field(:priority)%>
+    
+    
+    <%if !@project%>
+        <%=f.label "Project"%>
+        <%=f.collection_select(:project_id, @projects, :id, :name) %>
+    <%end%>
+  
+  <br>
+  <br>
+  <%=f.submit("Save")%>
+<%end%>
+

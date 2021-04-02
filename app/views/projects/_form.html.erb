@@ -1,23 +1,15 @@
-
 <%=form_for(@project) do |f|%>
     <%=f.label("Project Name:") %>
     <%=f.text_field(:name) %>
-    
     <br>
-    <br>
-
-    <%=f.label("Tasks:") %>
+    <%=f.label("Tasks") %>
     <%=f.fields_for :tasks do |t| %>    
-        
-        <br>
         <%=t.label "Description" %>
         <%=t.text_field :description%>
-
+        <br>
         <%=t.label "Priority (1-4, 1 being Highest)"%>
         <%=t.number_field :priority%>
-
     <%end%>
-    
     <br>
     <%=f.submit "Submit"%>
 <%end%>
