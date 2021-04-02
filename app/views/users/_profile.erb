@@ -3,22 +3,19 @@
 
 <br>
 <br>
-
-
-
 <h3> My Projects </h3>
 <% Project.all.each do |p| %>
-    <li><%= p.name %></li>
+    <li><%= p.name %> // <%=link_to "See Project", project_path(p) %></li>
 <%end%>
-
-
 
 <br>
 <h3> Project's I'm Assigned To </h3>
 <% Project.all.each do |p| %>
     <% p.tasks.all.each do |t| %>      
         <% if (t.assigned == @user.id) %>
-            <li><%= p.name %> </li>
+            <li><%= p.name %> //  <%=link_to "Check Assignment", project_path(p) %></li>
+            <li> ^^^^^Task: <%= t.task_description %> </li>
+            <br>
         <%end%> 
     <%end%>
 <%end%>

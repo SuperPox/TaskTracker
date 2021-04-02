@@ -21,7 +21,6 @@ class TasksController < ApplicationController
     
     
     def create
-        binding.pry
         @task = Task.create(task_params)
         @task.user = current_user
         if params[:project_id]
