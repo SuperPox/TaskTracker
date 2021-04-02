@@ -1,3 +1,4 @@
+
 <%=form_for(@project) do |f|%>
     <%=f.label("Project Name:")%>
     <%=f.text_field(:name)%>
@@ -7,13 +8,18 @@
     <br>
     <br>
     <br>
+    
     <%=f.label("Task") %>
     <%=f.fields_for :tasks do |t| %>    
         <%=t.label "Description" %>
         <%=t.text_field :task_description%>
         <%=t.label "Priority"%>
         <%=t.number_field :priority%>
+        <%=t.label "Assigned To:" %>
+        <%=t.select :assigned, User.all.collect { |p| [p.username, p.id] },
+        :include_blank => true %>
     <%end%>
+
     <br>
     <%=f.submit "Submit"%>
 <%end%>
