@@ -1,8 +1,10 @@
 <br>
 <h2> <%= @user.username %> </h2>
 <% if @user.rank == nil %>
-    <h3> Rank: 1 </h3>
+    <% @user.rank = 0 %>
+    <h3> Rank: <%=@user.rank%> </h3>
 <%end%>
+
 
 <% if @user.expertise == nil %>
     <%=render partial: 'form'%>

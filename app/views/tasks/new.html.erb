@@ -4,13 +4,24 @@
 
 <%if @project%>
     <h2><%=@project.name%></h2>
+    <h3><%=@project.project_description%></h2>
 <%end%>
-    <h3> Tasks: </h3>
-<%= form_for(@task, url: form_url_helper(@project)) do |f|%>
-    <%=f.label "Description"%>
-    <%=f.text_field(:description)%>
-    <%=f.label "Priority"%>
-    <%=f.number_field(:priority)%>
+
+<%if @project.tasks%>
+    <% @project.tasks.each do |t| %>
+        <%if t.task_description != nil %>
+            <li><%= t.task_description %> //// Priority: <%= t.priority %> </li>
+        <%end%>
+    <%end%>
+<%end%>
+
+
+<h3> New Task: </h3>
+    <%= form_for(@task, url: form_url_helper(@project)) do |f|%>
+        <%=f.label "Description"%>
+        <%=f.text_field(:task_description)%>
+        <%=f.label "Priority"%>
+        <%=f.number_field(:priority)%>
     
     
     <%if !@project%>

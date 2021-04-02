@@ -9,6 +9,7 @@ class TasksController < ApplicationController
     end 
        
     def new
+        binding.pry
         if params[:project_id]
           @project = Project.find_by(id: params[:project_id])
           @task = @project.tasks.build
@@ -21,19 +22,20 @@ class TasksController < ApplicationController
     
     
     def create
+        binding.pry
         @task = Task.create(task_params)
         @task.user = current_user
         if params[:project_id]
           @task.project_id = params[:project_id]
         end
-        @task.save
+        @task.save!
         redirect_to projects_path
     end    
     
     private
     
     def task_params
-        params.require(:task).permit(:description, :priority, :project_id)
+        params.require(:task).permit(:task_description, :priority, :project_id)
     end
     
 end

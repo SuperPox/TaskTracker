@@ -1,10 +1,12 @@
 <h2> <%=@project.name%> Project </h2>
-<%binding.pry%>
-<h3> <%=@project.description%> </h3>
-
-
-<br>
-<br>
+<h3> <%=@project.project_description%> </h3>
 <%=link_to "Edit Project", edit_project_path(@project)%><br><br>
-<%=link_to "Add Tasks", new_project_task_path(@project) %><br><br>
+
+<% @project.tasks.each do |t| %>
+    <li><%= t.task_description %> //// Priority: <%= t.priority %> </li>
+<%end%>
+
+<br>
+
+<%link_to "Add Task", new_project_task_path(@project) %><br><br>
 <%=button_to("Delete", @project, method: :delete, data: { confirm: "Really?" }) %>
