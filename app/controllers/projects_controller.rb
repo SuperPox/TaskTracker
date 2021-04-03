@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.tasks.each {|m| m.user = current_user}
+    @project.project_creator = current_user.username
     if @project.save
         redirect_to project_path(@project)
         #redirect_to new_project_task_path(@project)
@@ -36,7 +37,9 @@ class ProjectsController < ApplicationController
 
   def update
     @project.tasks.each {|m| m.user = current_user}
+    @project.tasks.each {|m| m.task_status = params[:project][:task_status].to_i}
     if @project.update(project_params)
+      
       redirect_to(project_path(@project))
     else
       @errors = @project.errors.full_messages
@@ -59,6 +62,10 @@ class ProjectsController < ApplicationController
 
     def set_project
       @project = Project.find_by(id: params[:id])
+    end
+
+    def checkbox_params
+      params.require(:project).permit(tasks_attributes: [:task_status])
     end
 
 

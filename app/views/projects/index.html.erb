@@ -1,5 +1,15 @@
 <h1>Projects Index</h1>
-<% @projects.each do |project|%>
-  <li><%=link_to(project.name, project_path(project))%></li>
+
+
+<% if @projects == [] %>
+  <h3> You do not have any projects yet </h3>
+  <h4> <%=link_to "Click Here to Create a New Project", new_project_path %> </h4>
+<%else%>
+  <% @projects.uniq.each do |project|%>
+    <li><%=link_to(project.name, project_path(project))%></li>
+  <%end%>
 <%end%>
+
+
+
 

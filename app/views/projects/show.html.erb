@@ -2,13 +2,13 @@
 <h3> <%=@project.project_description%> </h3>
 <%=link_to "Edit Project", edit_project_path(@project)%><br><br>
 
-
 <% @project.tasks.each do |t| %>
-    <li><%= t.task_description %> // Priority: <%= t.priority %> // Assigned To: <%= User.find_by(id: "#{t.assigned}").username %> // 
-        <% if (t.task_status == nil)  %>
-            <%=check_box_tag 'incomplete' %>
+    <li><%= t.task_description %> // Priority: <%= t.priority %> // 
+    Assigned To: <%= User.find_by(id: "#{t.assigned}").username %> // 
+        <% if (t.task_status == 2)%>
+            ✅ COMPLETE
         <% else %>
-            <%=check_box_tag 'complete', 'yes', true, disabled:true %> 
+            ❌ INCOMPLETE
         <%end%>  
     </li>
 <%end%>

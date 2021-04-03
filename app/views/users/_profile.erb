@@ -3,20 +3,38 @@
 
 <br>
 <br>
-<h3> My Projects </h3>
+<h3> All Projects </h3>
 <% Project.all.each do |p| %>
     <li><%= p.name %> // <%=link_to "See Project", project_path(p) %></li>
 <%end%>
 
 <br>
-<h3> Project's I'm Assigned To </h3>
+<h3> My Projects </h3>
 <% Project.all.each do |p| %>
-    <% p.tasks.all.each do |t| %>      
-        <% if (t.assigned == @user.id) %>
-            <li><%= p.name %> //  <%=link_to "Check Assignment", project_path(p) %></li>
-            <li> ^^^^^Task: <%= t.task_description %> </li>
-            <br>
-        <%end%> 
+    <% if (p.project_creator == @user.username) %>
+        <li><%= p.name %> //  <%=link_to "See Project", project_path(p) %></li>
     <%end%>
 <%end%>
+
+<br>
+<h3> Projects & Tasks I'm Assigned To </h3>
+<% @bool = true%>
+<% Project.all.each do |p| %>
+    <% p.tasks.all.each do |t| %>        
+        <% if (t.assigned == @user.id) %>
+            <% if @bool == true %>
+                <li><%= p.name %> //  <%=link_to "See Project", project_path(p) %></li>
+                <%@bool = false%>
+            <%end%>            
+            <li> ^^^^^Task: <%= t.task_description %> // <%=link_to "Complete Task", edit_task_path(t) %>  </li>
+            <li> Id: <%= t.id%> // Status: <%= t.task_status%> </li>
+        <%end%>
+    <%end%>
+    <% @bool = true%> 
+<%end%>
+
+
+
+    
+
 

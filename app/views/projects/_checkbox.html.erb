@@ -1,8 +1,6 @@
 
-<%=form_for(@project) do |f|%>
-    <%=f.form_for :tasks do |t| %>  
-        <%= t.check_box_tag(:task_status) %>
-        <%= t.label_tag(:task_status, "Task Status") %>
-    <%end%>
-  <%=f.submit "Submit"%>
-<%end%>
+<%= form_with model: @project do |form| %>
+  <%= form.select :task_status, [1, 2] %>  
+  <%= form.submit value="Update Status" %>
+<% end %>
+
