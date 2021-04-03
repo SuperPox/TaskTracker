@@ -1,6 +1,6 @@
 
 <%=form_for(@user) do |f|%>
-    <%=f.label("What is your Role on the Team? ") %>
+    <h3><%=f.label("What is your Role on the Team? ") %></h3>
     <%=f.text_field(:expertise) %>
     <%=f.submit "Submit"%>
 <%end%>

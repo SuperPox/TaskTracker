@@ -1,7 +1,10 @@
-<h2> New Project </h2>
+<div class="container">
+<br>
+<h1> New Project </h1>
 
 <% @errors && @errors.each do |e| %>
     <li><%=e%></li>
 <%end%>
 
 <%=render('form')%>
+</div>

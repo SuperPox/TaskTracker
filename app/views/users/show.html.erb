@@ -1,14 +1,10 @@
-<br>
-<h2> <%= @user.username %> </h2>
-<% if @user.rank == nil %>
-    <% @user.rank = 0 %>
-    <h3> Rank: <%=@user.rank%> </h3>
-<%end%>
+<div class="container">
+    <br>
+    <h1> <%= @user.username %> </h1>
 
-
-<% if @user.expertise == nil %>
-    <%=render partial: 'form'%>
-<%else%>
-    <%=render partial: 'profile'%>
-<%end%>
-
+    <% if @user.expertise == nil %>
+        <%=render partial: 'form'%>
+    <%else%>
+        <%=render partial: 'profile'%>
+    <%end%>
+</div>

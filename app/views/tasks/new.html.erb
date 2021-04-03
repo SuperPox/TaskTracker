@@ -1,20 +1,24 @@
+<div class="container">
+    <br>
+
 <% @errors && @errors.each do |e| %>
   <li><%=e%></li>
 <%end%>
 
 <%if @project%>
-    <h2><%=@project.name%></h2>
+    <h1><%=@project.name%></h1>
     <h3><%=@project.project_description%></h2>
 <%end%>
 
 <%if @project.tasks%>
     <% @project.tasks.each do |t| %>
         <%if t.task_description != nil %>
-            <li><%= t.task_description %> //// Priority: <%= t.priority %> </li>
+            <li><%= t.task_description %> // Priority: <%= t.priority %> </li>
         <%end%>
     <%end%>
 <%end%>
 
+<br>
 <h3> New Task: </h3>
     <%= form_for(@task, url: form_url_helper(@project)) do |f|%>
         <%=f.label "Description"%>
@@ -34,4 +38,5 @@
   <br>
   <%=f.submit("Save")%>
 <%end%>
+</div>
 

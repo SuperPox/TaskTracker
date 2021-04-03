@@ -1,7 +1,11 @@
-<h2> <%=@project.name%> Project </h2>
+<div class="container">
+<br>
+<h1> <%=@project.name%> Project </h1>
 <h3> <%=@project.project_description%> </h3>
-<%=link_to "Edit Project", edit_project_path(@project)%><br><br>
+<%=link_to "Edit Project", edit_project_path(@project)%>
+<br>
 
+<h5> ===================== </h5>
 <% @project.tasks.each do |t| %>
     <li> 
         <% if (t.task_status == 2)%>
@@ -12,10 +16,9 @@
         <%= t.task_description %> // Priority: <%= t.priority %> // Assigned To: <%= User.find_by(id: "#{t.assigned}").username %>
     </li>
 <%end%>
-
-
-
+<h5> ===================== </h5>
 <br>
 
-<%=link_to "Add Task", new_project_task_path(@project) %><br><br>
+<%=link_to "Add Task", new_project_task_path(@project) %> <br><br>
 <%=button_to("Delete", @project, method: :delete, data: { confirm: "Really?" }) %>
+</div>

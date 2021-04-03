@@ -1,26 +1,29 @@
-
+<div class="container">
+<br>
 <%=form_for(@project) do |f|%>
-    <%=f.label("Project Name:")%>
+    <%=f.label("Project Name:")%><br>
     <%=f.text_field(:name)%>
     <br>
-    <%=f.label("Project Description:")%>
+    <%=f.label("Project Description:")%><br>
     <%=f.text_field(:project_description)%>
     <br>
-    <br>
-    <br>
-    
+    <br>  
     <%=f.label("Task") %>
     <%=f.fields_for :tasks do |t| %>    
-        <%=t.label "Description" %>
+        <%=t.label "Description" %><br>
         <%=t.text_field :task_description%>
-        <%=t.label "Priority"%>
+        <br>
+        <%=t.label "Priority"%> <br>
         <%=t.number_field :priority%>
-        <%=t.label "Assigned To:" %>
+        <br>
+        <%=t.label "Assigned To:" %> <br>
         <%=t.select :assigned, User.all.collect { |p| [p.username, p.id] },
         :include_blank => true %>
     <%end%>
-
+    <br>
     <br>
     <%=f.submit "Submit"%>
 <%end%>
+</div>
+
 

@@ -1,42 +1,45 @@
-<h3> Role: <%= @user.expertise %> </h3>
-<%=link_to "Edit My Role", edit_user_path(@user)%>
+<h5> Role: <%=link_to(@user.expertise, edit_user_path(@user))%> </h5>
 
 <br>
-<br>
-<h3> All Projects </h3>
-<% Project.all.each do |p| %>
-    <li><%= p.name %> // <%=link_to "See Project", project_path(p) %></li>
-<%end%>
-
-<br>
-<h3> My Projects </h3>
-<% Project.all.each do |p| %>
-    <% if (p.project_creator == @user.username) %>
-        <li><%= p.name %> //  <%=link_to "See Project", project_path(p) %></li>
-    <%end%>
-<%end%>
-
 <br>
 <h3> Projects & Tasks I'm Assigned To </h3>
-<h5> (click the symbols to mark tasks) </h5>
 <% @bool = true%>
 <% Project.all.each do |p| %>
     <% p.tasks.all.each do |t| %>        
         <% if (t.assigned == @user.id) %>
             <% if @bool == true %>
-                <li><%= p.name %> //  <%=link_to "See Project", project_path(p) %></li>
+                <li> <%=link_to(p.name, project_path(p))%></li>
                 <%@bool = false%>
             <%end%>            
-            <% if t.task_status == 1 %>
-                ------- <%=link_to "⭕", edit_task_path(t)%> <%= t.task_description %> 
+            <% if t.task_status == nil %>
+                ^ <%=link_to "⭕", edit_task_path(t)%> <%= t.task_description %> 
+            <% elsif t.task_status == 1 %>
+                ^ <%=link_to "⭕", edit_task_path(t)%> <%= t.task_description %> 
             <% else %>
-                ------- <%=link_to "✅", edit_task_path(t)%> <%= t.task_description %> 
+                ^ <%=link_to "✅", edit_task_path(t)%> <%= t.task_description %> 
             <%end%>
             <br>
         <%end%>
     <%end%>
     <% @bool = true%> 
 <%end%>
+
+<br>
+<br>
+<% @bool3 = true %>
+<h3> My Projects </h3>
+<% Project.all.each do |p| %>
+    <% if (p.project_creator == @user.username) %>
+        <li> <%=link_to(p.name, project_path(p))%></li>
+    <%else%>
+        <% if @bool3 == true && p.name == nil %>
+            <%=link_to "Create a New Project", new_project_path %>
+            <% @bool3 = false %>
+        <%end%>
+    <%end%>
+<%end%>
+
+
 
 
 
