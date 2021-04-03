@@ -3,13 +3,13 @@
 <%=link_to "Edit Project", edit_project_path(@project)%><br><br>
 
 <% @project.tasks.each do |t| %>
-    <li><%= t.task_description %> // Priority: <%= t.priority %> // 
-    Assigned To: <%= User.find_by(id: "#{t.assigned}").username %> // 
+    <li> 
         <% if (t.task_status == 2)%>
-            ✅ COMPLETE
+            ✅  
         <% else %>
-            ❌ INCOMPLETE
-        <%end%>  
+            ⭕ 
+        <%end%>
+        <%= t.task_description %> // Priority: <%= t.priority %> // Assigned To: <%= User.find_by(id: "#{t.assigned}").username %>
     </li>
 <%end%>
 

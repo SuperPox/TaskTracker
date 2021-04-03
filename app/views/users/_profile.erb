@@ -18,6 +18,7 @@
 
 <br>
 <h3> Projects & Tasks I'm Assigned To </h3>
+<h5> (click the symbols to mark tasks) </h5>
 <% @bool = true%>
 <% Project.all.each do |p| %>
     <% p.tasks.all.each do |t| %>        
@@ -26,8 +27,12 @@
                 <li><%= p.name %> //  <%=link_to "See Project", project_path(p) %></li>
                 <%@bool = false%>
             <%end%>            
-            <li> ^^^^^Task: <%= t.task_description %> // <%=link_to "Complete Task", edit_task_path(t) %>  </li>
-            <li> Id: <%= t.id%> // Status: <%= t.task_status%> </li>
+            <% if t.task_status == 1 %>
+                ------- <%=link_to "⭕", edit_task_path(t)%> <%= t.task_description %> 
+            <% else %>
+                ------- <%=link_to "✅", edit_task_path(t)%> <%= t.task_description %> 
+            <%end%>
+            <br>
         <%end%>
     <%end%>
     <% @bool = true%> 
