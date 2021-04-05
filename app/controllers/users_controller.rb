@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
     before_action(:set_user, except: [:create])
+    before_action(:require_login, except: [:new, :create])
 
   
     def new
@@ -9,6 +10,8 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id: params[:id])
+        update_user_ranks2(@user)
+        @star = User.top_tasker
     end
 
     def create
@@ -35,6 +38,7 @@ class UsersController < ApplicationController
         end
     end
 
+    
     private
 
     def user_params
@@ -49,4 +53,18 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username, :password, :password_confirmation, :expertise)
     end
 
+    def update_user_ranks2(user)
+        @rankcount = 0
+        @projectcount = 0
+        user.projects.each do |p|
+                @projectcount += 1
+                p.tasks.each do |t|
+                    if (t.assigned == user.id && t.task_status == 2)
+                        @rankcount += 1
+                    end
+                end
+            end
+        user.rank = @rankcount/@projectcount
+        user.save
+    end
 end

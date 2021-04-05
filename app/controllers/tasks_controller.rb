@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+    before_action(:require_login)
+
     def index
         if params[:priority]
             @tasks = Task.priority_search(params[:priority])

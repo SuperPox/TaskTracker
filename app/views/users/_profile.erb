@@ -1,6 +1,15 @@
 <h5> Role: <%=link_to(@user.expertise, edit_user_path(@user))%> </h5>
+<h5> Rank: <%= @user.rank %> </h5>
+
 
 <br>
+<% if @star != [] %>
+    <h5> ⭐ Top Taskers: ⭐ </h5>
+    <% @star.each do |u| %>
+       <li><%= u.username %></li>
+    <%end%>    
+<%end%>
+
 <br>
 <h3> Projects & Tasks I'm Assigned To </h3>
 <h6> Click Icons to Toggle Task Status </h6>
@@ -25,7 +34,6 @@
     <% @bool = true%> 
 <%end%>
 
-<br>
 <br>
 <% @bool3 = true %>
 <h3> My Projects </h3>

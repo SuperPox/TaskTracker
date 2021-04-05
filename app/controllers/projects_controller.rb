@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action(:set_project, except: [:index, :new, :create])
+  before_action(:require_login)
 
   def index
     if params[:user_id]
