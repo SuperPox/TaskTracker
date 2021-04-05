@@ -1,5 +1,7 @@
 <div class="container">
-    <br>
+<br>
+    
+<%=render(partial: "application/errors", locals: {errors: @task.errors.full_messages})%>
 
 <% @errors && @errors.each do |e| %>
   <li><%=e%></li>
@@ -10,9 +12,6 @@
     <h3><%=@project.project_description%></h2>
 <%end%>
 
-
-
-
 <br>
 <h3> New Task: </h3>
     <%= form_for(@task, url: form_url_helper(@project)) do |f|%>
@@ -21,13 +20,13 @@
         <%=f.label "Priority"%>
         <%=f.number_field(:priority)%>
         <%=f.label "Assigned To:" %>
-        <%=f.select :assigned, User.all.collect { |p| [p.username, p.id] },
-        :include_blank => true %>
+        <%=f.select :assigned, User.all.collect { |p| [p.username, p.id] }, :include_blank => true %>
 
     <%if !@project%>
-        <%=f.label "Project"%>
-        <%=f.collection_select(:project_id, @projects, :id, :name) %>
+       <% @project2 = Project.last %>
+       <%= f.hidden_field :project_id, :value => @project2.id %>
     <%end%>
+
   
   <br>
   <br>

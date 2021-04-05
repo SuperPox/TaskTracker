@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
     before_action(:set_user, except: [:create])
+
   
     def new
         @user = User.new

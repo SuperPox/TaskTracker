@@ -12,8 +12,7 @@ class TasksController < ApplicationController
         if params[:project_id]
             @project = Project.find_by(id: params[:project_id])
             @task = @project.tasks.build
-            @projects = Project.all
-            
+            @projects = Project.all    
         else
             @task = Task.new
             @projects = Project.all
@@ -30,8 +29,10 @@ class TasksController < ApplicationController
         if @task.save
             redirect_to project_path(@task.project_id)
         else 
-            @errors = @task.errors.full_messages
-            redirect_to new_task_path
+            #@errors = @task.errors.full_messages
+            #redirect_to new_task_path
+            @tasks = Task.all
+            render :new
         end
     end    
 
@@ -55,7 +56,7 @@ class TasksController < ApplicationController
     private
     
     def task_params
-        params.require(:task).permit(:task_description, :priority, :project_id, :assigned, :task_status, :id)
+        params.require(:task).permit(:task_description, :priority, :project_id, :assigned, :task_status, :user_id, :id)
     end
-    
+
 end
