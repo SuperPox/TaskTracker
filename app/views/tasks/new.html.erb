@@ -10,13 +10,8 @@
     <h3><%=@project.project_description%></h2>
 <%end%>
 
-<%if @project.tasks%>
-    <% @project.tasks.each do |t| %>
-        <%if t.task_description != nil %>
-            <li><%= t.task_description %> // Priority: <%= t.priority %> </li>
-        <%end%>
-    <%end%>
-<%end%>
+
+
 
 <br>
 <h3> New Task: </h3>

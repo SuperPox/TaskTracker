@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action(:set_user)
+    before_action(:set_user, except: [:create])
   
     def new
         @user = User.new
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     end
 
     def profile_params
-        params.require(:user).permit (:expertise)
+        params.require(:user).permit(:username, :password, :password_confirmation, :expertise)
     end
 
 end

@@ -13,6 +13,7 @@ class TasksController < ApplicationController
             @project = Project.find_by(id: params[:project_id])
             @task = @project.tasks.build
             @projects = Project.all
+            
         else
             @task = Task.new
             @projects = Project.all
@@ -26,12 +27,15 @@ class TasksController < ApplicationController
         if params[:project_id]
           @task.project_id = params[:project_id]
         end
-        @task.save!
-        redirect_to projects_path
+        if @task.save
+            redirect_to project_path(@task.project_id)
+        else 
+            @errors = @task.errors.full_messages
+            redirect_to new_task_path
+        end
     end    
 
     def update
-        binding.pry 
     end
 
     def edit

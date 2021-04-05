@@ -1,3 +1,6 @@
+<div class="container">
+    <br>
+
 <h2>Log In</h2>
 
   <% @errors && @errors.each do |e| %>
@@ -6,11 +9,14 @@
 
 <%= form_for :user do |f|%>
   <%=f.label "Username" %>
-  <%=f.text_field :username%>
+  <%=f.text_field :username%><br>
   <%=f.label "Password"%>
   <%=f.password_field :password %>
+  <br>
   <%=f.submit "Log In"%>
-
+  <br>
+  <br>
   <%=link_to "Sign Up With Facebook", '/auth/facebook'%>
 
 <%end%>
+</div>

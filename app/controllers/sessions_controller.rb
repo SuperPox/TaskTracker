@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to user_items_path(@user)
+      redirect_to user_projects_path(@user)
     elsif @user
       @errors = ["Invalid Password"]
       render :new
@@ -22,10 +22,13 @@ class SessionsController < ApplicationController
     user = User.find_or_create_by(username: fb_auth['info']['email']) do |u|
       u.password = 'password'
     end
+   
     if user.save
       session[:user_id] = user.id
+      flash[:message] = "Successfully logged in!"
       redirect_to user_projects_path(user)
     else
+      flash[:message] = "Login failed!"
       redirect_to signup_path
     end
   end
