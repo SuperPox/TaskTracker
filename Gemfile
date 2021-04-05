@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 # CUSTOM ////////////////////////
 gem 'dotenv-rails'
-gem 'omniauth'
+gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-facebook'
 gem 'bcrypt'
 gem 'pry'
